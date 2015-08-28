@@ -14,7 +14,7 @@ func main() {
     b := Boom{}
     b.Name = "Nok"
     
-    err, infractions := validate.ValidateRequired(b)
+    err, infractions := validate.Required(b)
     if err != nil {
         log.Error(err)
         log.Print(infractions)

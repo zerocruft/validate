@@ -12,7 +12,7 @@ const (
 	INT      = "int"
 )
 
-func ValidateRequired(i interface{}) (error, []string) {
+func Required(i interface{}) (error, []string) {
 	var err error
 	t := reflect.TypeOf(i)
 	err = errors.New("Error: " + t.Name() + " has required fields")
