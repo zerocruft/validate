@@ -16,7 +16,7 @@ func main() {
     
     err, infractions := validate.Required(b)
     if err != nil {
-        log.Error(err)
+        log.Print(err)
         log.Print(infractions)
     }
 }
