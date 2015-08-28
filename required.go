@@ -6,8 +6,10 @@ import (
 )
 
 const (
-	STRING = "string"
-	INT    = "int"
+	VALIDATE = "validate"
+	REQUIRED = "required"
+	STRING   = "string"
+	INT      = "int"
 )
 
 func ValidateRequired(i interface{}) (error, []string) {
@@ -20,9 +22,10 @@ func ValidateRequired(i interface{}) (error, []string) {
 	for index := 0; index < t.NumField(); index++ {
 		field := t.Field(index)
 		name := field.Name
-		required := field.Tag.Get("required")
+		isValidate := field.Tag.Get(VALIDATE)
 
-		if required != "" {
+		// TODO will want to check what type of validation is happening. For now, only required is respected
+		if isValidate != "" {
 			if field.Type.Name() == STRING {
 				if ivalue.FieldByName(name).String() == "" {
 					infractions = append(infractions, name)
