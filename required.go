@@ -10,6 +10,7 @@ const (
 	REQUIRED = "required"
 )
 
+// Validates a struct, returning an error, and a list of field names if any fields tagged as validate:"required" are equal to zero based value.
 func Required(i interface{}) (error, []string) {
 	var err error
 	t := reflect.TypeOf(i)
@@ -39,7 +40,6 @@ func Required(i interface{}) (error, []string) {
 
 	if len(infractions) == 0 {
 		err = nil
-		infractions = nil
 	}
 
 	return err, infractions
