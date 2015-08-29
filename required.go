@@ -8,8 +8,6 @@ import (
 const (
 	VALIDATE = "validate"
 	REQUIRED = "required"
-	STRING   = "string"
-	INT      = "int"
 )
 
 func Required(i interface{}) (error, []string) {
