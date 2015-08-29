@@ -26,8 +26,13 @@ func Required(i interface{}) (error, []string) {
 
 		// TODO will want to check what type of validation is happening. For now, only required is respected
 		if isValidate != "" {
-			if field.Type.Name() == STRING {
-				if ivalue.FieldByName(name).String() == "" {
+			switch ivalue.FieldByName(name).Kind() {
+			case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+				if ivalue.FieldByName(name).Int() == reflect.Zero(field.Type).Int() {
+					infractions = append(infractions, name)
+				}
+			case reflect.String:
+				if ivalue.FieldByName(name).String() == reflect.Zero(field.Type).String() {
 					infractions = append(infractions, name)
 				}
 			}
@@ -41,3 +46,4 @@ func Required(i interface{}) (error, []string) {
 
 	return err, infractions
 }
+
