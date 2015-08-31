@@ -44,4 +44,3 @@ func Required(i interface{}) (error, []string) {
 
 	return err, infractions
 }
-
